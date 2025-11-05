@@ -1,0 +1,10 @@
+[
+  {
+    "text": "Apple lanzó el nuevo iPhone en California.",
+    "entities": [[0, 5, "ORG"], [32, 42, "LOC"]]
+  },
+  {
+    "text": "Microsoft adquirió GitHub por 7.5 mil millones de dólares.",
+    "entities": [[0, 9, "ORG"], [19, 25, "ORG"]]
+  }
+]

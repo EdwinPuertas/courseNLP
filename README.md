@@ -117,16 +117,16 @@ courseNLP/
 │   ├── word_tokenization.ipynb
 │   ├── bow_model.ipynb
 │   ├── tfidf_model.ipynb
-│   ├── tfidf_nv_imdb.ipynb
+│   ├── tfidf_naive_bayes_imdb.ipynb
 │   ├── tass_bow_softmax_workshop.ipynb
 │   ├── pycaret_text_classification.ipynb
-│   ├── evaluación_clasificación,.ipynb
-│   ├── ejemplo_NER.ipynb
+│   ├── classification_evaluation.ipynb
+│   ├── ner_introduction.ipynb
 │   ├── ner_business.ipynb
-│   ├── training_NER.ipynb
-│   ├── Custom_Named_Entity_Recognition_with_BERT.ipynb
-│   ├── clasificador_bert.ipynb
-│   ├── clasificador_reseñas_es.ipynb
+│   ├── training_ner.ipynb
+│   ├── custom_ner_bert.ipynb
+│   ├── bert_classifier.ipynb
+│   ├── spanish_review_classifier.ipynb
 │   ├── customer_service_chatbot.ipynb
 │   ├── metrics_llm_business.ipynb
 │   └── text_generation_business.ipynb
@@ -137,21 +137,21 @@ courseNLP/
 │   ├── 02_clear_and_direct.ipynb
 │   ├── 03_assigning_roles.ipynb
 │   ├── 04_separating_data_instructions.ipynb
-│   ├── 05_formatting_output_&_speaking_claude.ipynb
+│   ├── 05_formatting_output_and_speaking_claude.ipynb
 │   ├── 06_precognition_thinking.ipynb
 │   ├── 07_fewshot_prompting.ipynb
 │   ├── 08_avoiding_hallucinations.ipynb
-│   └── 09_Complex_Prompts_from_Scratch.ipynb
+│   └── 09_complex_prompts_from_scratch.ipynb
 │
 ├── prompting_techniques/            # Supplementary – Advanced prompting strategies
-│   ├── Chain_of-_Thought_DGS.ipynb
-│   ├── FEW_SHOT_PROMPTING.ipynb
-│   ├── Image_Segmentation.ipynb
-│   ├── Program-Aided Lenguage (PAL).ipynb
-│   ├── Prompt_de_conocimiento_generado.ipynb
-│   ├── ReAct_2.ipynb
-│   ├── Retrieval-Augmented Generation.ipynb
-│   └── Zero-shot COT Prompting.ipynb
+│   ├── chain_of_thought.ipynb
+│   ├── few_shot_prompting.ipynb
+│   ├── image_segmentation.ipynb
+│   ├── program_aided_language_pal.ipynb
+│   ├── generated_knowledge_prompting.ipynb
+│   ├── react_prompting.ipynb
+│   ├── retrieval_augmented_generation.ipynb
+│   └── zero_shot_cot_prompting.ipynb
 │
 ├── LICENSE
 └── README.md
@@ -195,10 +195,10 @@ courseNLP/
 | Notebook | Topic |
 |---|---|
 | [`tfidf_model.ipynb`](./examples/tfidf_model.ipynb) | TF-IDF Vectorization & Document Similarity |
-| [`tfidf_nv_imdb.ipynb`](./examples/tfidf_nv_imdb.ipynb) | Naive Bayes Text Classification — IMDB |
+| [`tfidf_naive_bayes_imdb.ipynb`](./examples/tfidf_naive_bayes_imdb.ipynb) | Naive Bayes Text Classification — IMDB |
 | [`tass_bow_softmax_workshop.ipynb`](./examples/tass_bow_softmax_workshop.ipynb) | Sentiment Analysis — BoW + Softmax (TASS) |
 | [`pycaret_text_classification.ipynb`](./examples/pycaret_text_classification.ipynb) | AutoML Text Classification with PyCaret |
-| [`evaluación_clasificación,.ipynb`](./examples/evaluación_clasificación,.ipynb) | Classification Evaluation Metrics |
+| [`classification_evaluation.ipynb`](./examples/classification_evaluation.ipynb) | Classification Evaluation Metrics |
 
 ---
 
@@ -255,12 +255,12 @@ courseNLP/
 
 | Notebook | Topic |
 |---|---|
-| [`ejemplo_NER.ipynb`](./examples/ejemplo_NER.ipynb) | Introduction to Named Entity Recognition |
+| [`ner_introduction.ipynb`](./examples/ner_introduction.ipynb) | Introduction to Named Entity Recognition |
 | [`ner_business.ipynb`](./examples/ner_business.ipynb) | NER for Business Information Extraction |
-| [`training_NER.ipynb`](./examples/training_NER.ipynb) | Training Custom NER Models |
-| [`Custom_Named_Entity_Recognition_with_BERT.ipynb`](./examples/Custom_Named_Entity_Recognition_with_BERT.ipynb) | BERT-based Custom NER Pipeline |
-| [`clasificador_bert.ipynb`](./examples/clasificador_bert.ipynb) | Text Classification with BERT |
-| [`clasificador_reseñas_es.ipynb`](./examples/clasificador_reseñas_es.ipynb) | Spanish Review Classifier — Fine-tuned BERT |
+| [`training_ner.ipynb`](./examples/training_ner.ipynb) | Training Custom NER Models |
+| [`custom_ner_bert.ipynb`](./examples/custom_ner_bert.ipynb) | BERT-based Custom NER Pipeline |
+| [`bert_classifier.ipynb`](./examples/bert_classifier.ipynb) | Text Classification with BERT |
+| [`spanish_review_classifier.ipynb`](./examples/spanish_review_classifier.ipynb) | Spanish Review Classifier — Fine-tuned BERT |
 
 ---
 
@@ -307,14 +307,14 @@ Advanced reasoning and retrieval strategies that extend LLM capabilities beyond 
 
 | Notebook | Topic |
 |---|---|
-| [`Chain_of-_Thought_DGS.ipynb`](./prompting_techniques/Chain_of-_Thought_DGS.ipynb) | Chain-of-Thought Prompting |
-| [`Zero-shot COT Prompting.ipynb`](./prompting_techniques/Zero-shot%20COT%20Prompting.ipynb) | Zero-Shot Chain-of-Thought |
-| [`FEW_SHOT_PROMPTING.ipynb`](./prompting_techniques/FEW_SHOT_PROMPTING.ipynb) | Few-Shot Prompting Strategies |
-| [`Program-Aided Lenguage (PAL).ipynb`](./prompting_techniques/Program-Aided%20Lenguage%20(PAL).ipynb) | Program-Aided Language (PAL) |
-| [`ReAct_2.ipynb`](./prompting_techniques/ReAct_2.ipynb) | ReAct: Reasoning + Acting |
-| [`Retrieval-Augmented Generation.ipynb`](./prompting_techniques/Retrieval-Augmented%20Generation.ipynb) | Retrieval-Augmented Generation (RAG) |
-| [`Prompt_de_conocimiento_generado.ipynb`](./prompting_techniques/Prompt_de_conocimiento_generado.ipynb) | Generated Knowledge Prompting |
-| [`Image_Segmentation.ipynb`](./prompting_techniques/Image_Segmentation.ipynb) | Multimodal Prompting — Image Segmentation |
+| [`chain_of_thought.ipynb`](./prompting_techniques/chain_of_thought.ipynb) | Chain-of-Thought Prompting |
+| [`zero_shot_cot_prompting.ipynb`](./prompting_techniques/zero_shot_cot_prompting.ipynb) | Zero-Shot Chain-of-Thought |
+| [`few_shot_prompting.ipynb`](./prompting_techniques/few_shot_prompting.ipynb) | Few-Shot Prompting Strategies |
+| [`program_aided_language_pal.ipynb`](./prompting_techniques/program_aided_language_pal.ipynb) | Program-Aided Language (PAL) |
+| [`react_prompting.ipynb`](./prompting_techniques/react_prompting.ipynb) | ReAct: Reasoning + Acting |
+| [`retrieval_augmented_generation.ipynb`](./prompting_techniques/retrieval_augmented_generation.ipynb) | Retrieval-Augmented Generation (RAG) |
+| [`generated_knowledge_prompting.ipynb`](./prompting_techniques/generated_knowledge_prompting.ipynb) | Generated Knowledge Prompting |
+| [`image_segmentation.ipynb`](./prompting_techniques/image_segmentation.ipynb) | Multimodal Prompting — Image Segmentation |
 
 ---
 

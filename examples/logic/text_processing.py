@@ -2,6 +2,7 @@ import re
 import nltk
 import spacy
 import unicodedata
+import requests
 from nltk import TweetTokenizer
 from spacy.lang.es import Spanish
 from spacy.lang.en import English
@@ -14,45 +15,49 @@ class TextProcessing(object):
 
     def __init__(self, lang: str = 'es'):
         self.lang = lang
-        self.nlp = TextProcessing.load_spacy(lang=lang)
 
     @staticmethod
-    def load_spacy(lang: str):
-        result = None
+    def nlp(text: str) -> list:
         try:
-            if lang == 'es':
-                result = spacy.load('es_core_news_sm')
-            else:
-                result = spacy.load('en_core_web_sm')
-            print('Language: {0}\n{1}: {2}'.format(TextProcessing.name, lang, result.pipe_names))
+            list_tagger = []
+            tp_nlp = TextProcessing.load_spacy(TextProcessing.lang)
+            doc = tp_nlp(text.lower())
+            print('original_text: {0}'.format(text))
+            for token in doc:
+                item = {'text': token.text, 'lemma': token.lemma_, 'pos': token.pos_, 'tag': token.tag_,
+                        'dep': token.dep_, 'shape': token.shape_, 'is_alpha': token.is_alpha,
+                        'is_stop': token.is_stop, 'is_digit': token.is_digit, 'is_punct': token.is_punct}
+                list_tagger.append(item)
+            return list_tagger
         except Exception as e:
-            print('Error load_sapcy: {0}'.format(e))
-        return result
-
-    def analysis_pipe(self, text: str):
-        doc = None
-        try:
-            doc = self.nlp(text=text)
-        except Exception as e:
-            print('Error analysis_pipe: {0}'.format(e))
-        return doc
+            print('Error nlp: {0}'.format(e))
 
     @staticmethod
-    def proper_encoding(text: str):
-        result = ''
+    def load_spacy(lang: str) -> object:
+        try:
+            spacy_model = {'es': 'es_core_news_sm', 'en': 'en_core_web_sm'}
+            if not spacy.util.is_package(spacy_model[lang]):
+                spacy.cli.download(spacy_model[lang])
+
+            component = spacy.load(spacy_model[lang])
+            print('- Text Processing: {0}'.format(component.pipe_names))
+            return component
+        except Exception as e:
+            print('Error load spacy: {0}'.format(e))
+
+    @staticmethod
+    def proper_encoding(text: str) -> str:
         try:
             text = unicodedata.normalize('NFD', text)
             text = text.encode('ascii', 'ignore')
-            result = text.decode("utf-8")
+            return text.decode("utf-8")
         except Exception as e:
             print('Error proper_encoding: {0}'.format(e))
-        return result
 
     @staticmethod
-    def stopwords(text: str):
-        result = ''
+    def stopwords(text: str) -> str:
         try:
-            nlp = Spanish()if TextProcessing == 'es' else English()
+            nlp = Spanish() if TextProcessing.lang == 'es' else English()
             doc = nlp(text)
             token_list = [token.text for token in doc]
             sentence = []
@@ -60,28 +65,24 @@ class TextProcessing(object):
                 lexeme = nlp.vocab[word]
                 if not lexeme.is_stop:
                     sentence.append(word)
-            result = ' '.join(sentence)
+            return ' '.join(sentence)
         except Exception as e:
             print('Error stopwords: {0}'.format(e))
-        return result
 
     @staticmethod
-    def remove_patterns(text: str):
-        result = ''
+    def remove_patterns(text: str) -> str:
         try:
             text = re.sub(r'\©|\×|\⇔|\_|\»|\«|\~|\#|\$|\€|\Â|\�|\¬', '', text)
             text = re.sub(r'\,|\;|\:|\!|\¡|\’|\‘|\”|\“|\"|\'|\`', '', text)
             text = re.sub(r'\}|\{|\[|\]|\(|\)|\<|\>|\?|\¿|\°|\|', '', text)
             text = re.sub(r'\/|\-|\+|\*|\=|\^|\%|\&|\$', '', text)
             text = re.sub(r'\b\d+(?:\.\d+)?\s+', '', text)
-            result = text.lower()
+            return text.lower()
         except Exception as e:
             print('Error remove_patterns: {0}'.format(e))
-        return result
 
     @staticmethod
-    def transformer(text: str, stopwords: bool = False):
-        result = ''
+    def transformer(text: str, stopwords: bool = False) -> str:
         try:
             text_out = TextProcessing.proper_encoding(text)
             text_out = text_out.lower()
@@ -97,43 +98,36 @@ class TextProcessing(object):
             text_out = TextProcessing.stopwords(text_out) if stopwords else text_out
             text_out = re.sub(r'\s+', ' ', text_out).strip()
             text_out = text_out.rstrip()
-            result = text_out if text_out != ' ' else None
+            return text_out if text_out != ' ' else None
         except Exception as e:
             print('Error transformer: {0}'.format(e))
-        return result
 
     @staticmethod
-    def tokenizer(text: str):
-        val = []
+    def tokenizer(text: str) -> list:
         try:
             text_tokenizer = TweetTokenizer()
-            val = text_tokenizer.tokenize(text)
+            return text_tokenizer.tokenize(text)
         except Exception as e:
             print('Error make_ngrams: {0}'.format(e))
-        return val
 
     @staticmethod
     def make_ngrams(text: str, num: int):
-        result = ''
         try:
             n_grams = ngrams(nltk.word_tokenize(text), num)
-            result = [' '.join(grams) for grams in n_grams]
+            return [' '.join(grams) for grams in n_grams]
         except Exception as e:
             print('Error make_ngrams: {0}'.format(e))
-        return result
 
-    @staticmethod
-    def tagger(text: str):
-        result = None
-        try:
-            list_tagger = []
-            doc = TextProcessing.analysis_pipe(text=text)
-            for token in doc:
-                item = {'text': token.text, 'lemma': token.lemma_, 'stem': token._.stem, 'pos': token.pos_,
-                        'tag': token.tag_, 'dep': token.dep_, 'shape': token.shape_, 'is_alpha': token.is_alpha,
-                        'is_stop': token.is_stop, 'is_digit': token.is_digit, 'is_punct': token.is_punct}
-                list_tagger.append(item)
-            result = list_tagger
-        except Exception as e:
-            print('Error tagger: {0}'.format(e))
-        return result
+
+if __name__ == '__main__':
+    tp_es = TextProcessing(lang='es')
+    result_es = tp_es.nlp(
+        'Ahora a la gente todo le parece tóxico, más si dices lo que sientes o te molesta…y NO, tóxico es quedarse '
+        'callado por miedo a arruinar algo. Hay que aprender a quererse primero.')
+    for i in result_es:
+        print(i)
+
+    tp_en = TextProcessing(lang='en')
+    result_en = tp_en.nlp("The data doesn’t lie: here's what one of our teams learned when they tried a 4-day workweek.")
+    for i in result_en:
+        print(i)

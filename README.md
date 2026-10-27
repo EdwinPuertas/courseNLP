@@ -196,7 +196,7 @@ courseNLP/
 |---|---|
 | [`tfidf_model.ipynb`](./examples/tfidf_model.ipynb) | TF-IDF Vectorization & Document Similarity |
 | [`tfidf_naive_bayes_imdb.ipynb`](./examples/tfidf_naive_bayes_imdb.ipynb) | Naive Bayes Text Classification — IMDB |
-| [`tass_bow_softmax_workshop.ipynb`](./examples/tass_bow_softmax_workshop.ipynb) | Sentiment Analysis — BoW + Softmax (TASS) |
+| [`bow_softmax_tass.ipynb`](examples/bow_softmax_tass.ipynb) | Sentiment Analysis — BoW + Softmax (TASS) |
 | [`pycaret_text_classification.ipynb`](./examples/pycaret_text_classification.ipynb) | AutoML Text Classification with PyCaret |
 | [`classification_evaluation.ipynb`](./examples/classification_evaluation.ipynb) | Classification Evaluation Metrics |
 
